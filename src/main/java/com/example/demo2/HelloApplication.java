@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Scanner;
 
 public class HelloApplication extends Application {
     @Override
@@ -20,8 +21,12 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        String a = "12.0439*943.129312/123123.4241+412421-14124+412421*134124(12412.1241)";
-        Calculator calculator = new Calculator();
-        calculator.calculate(a);
+        String a = "";
+        while (!a.equals("0")) {
+            Scanner input = new Scanner(System.in);
+            a = input.next();
+            Calculator calculator = new Calculator();
+            System.out.println("answer : " + calculator.calculate(a));
+        }
     }
 }

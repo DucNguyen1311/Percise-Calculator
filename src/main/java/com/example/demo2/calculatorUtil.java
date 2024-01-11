@@ -1,18 +1,24 @@
 package com.example.demo2;
 
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.*;
+import static ch.obermuhlner.math.big.BigDecimalMath.toBigDecimal;
 public class calculatorUtil {
+    public static final MathContext mathContext = new MathContext(100);
+    public static final BigDecimal MIN_INT =  toBigDecimal("-2147483648");
+    public static final BigDecimal MAX_INT = toBigDecimal( "2147483647");
     public static final String[] opeValue = new String[] { "+", "-", "*", "/", "^", "√","(",")"};
     public static final Set<String> Operators = new HashSet<>(Arrays.asList(opeValue));
 
     public static final String[] numberValue = new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10","."};
     public static final Set<String> Numbers = new HashSet<>(Arrays.asList(numberValue));
 
-    public static final Map<String, Integer> priority = initMap();
+    public static Map<String, Integer> priority = initMap();
 
     private static Map<String, Integer> initMap() {
-        return Map.of("+", 1, "-", 1, "*", 2, "/", 2, "^", 3, "√", 4, "(", 0, ")", 0);
+        return Map.of("+", 1, "-", 1, "*", 2, "/", 2, "^", 3, "√", 3, "(", 0, ")", 0, "%", 2);
     }
     public calculatorUtil() {
     }
@@ -121,6 +127,10 @@ public class calculatorUtil {
                 functionCharAt += function.peek().charAt(0);
                 String modify = function.peek();
                 if (function.peek().length() == 1 || Numbers.contains(functionCharAt)) {
+                    if (modify.equals("0")) {
+                        result.add(modify);
+                        continue;
+                    }
                     while(modify.startsWith("0")) {
                         modify = modify.substring(1);
                     }

@@ -1,10 +1,14 @@
 package com.example.demo2;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 import java.util.Queue;
 import java.util.Stack;
+
+import static ch.obermuhlner.math.big.BigDecimalMath.toBigDecimal;
 
 public class Calculator {
 
@@ -17,14 +21,13 @@ public class Calculator {
         history = new Stack<String>();
     }
 
-    public void calculate(String function) {
+    public String calculate(String function) {
+        Stack<String> Opes = new Stack<String>();
+        Stack<String> Nums = new Stack<String>();
         try {
             isLegit(function);
-            System.out.println("Yayyyy!! no error!!!");
             Queue<String> func = util.numberModify(util.stringToQueue(function));
             util.printQueue(func);
-            Stack<String> Opes = new Stack<String>();
-            Stack<String> Nums = new Stack<String>();
             int size = func.size();
             for (int i = 0; i < size; i++) {
                 System.out.println(func.peek());
@@ -105,12 +108,16 @@ public class Calculator {
                 String result = controller(operand,x,y);
                 Nums.add(result);
             }
-            System.out.println(Nums.peek());
-        } catch (SyntaxException ex) {
+        } catch (SyntaxException | MathException ex) {
             System.out.println("Error!!!  :" + ex);
+            return "";
         } finally {
             System.out.println("Try-Catch finished");
         }
+        if (!Nums.empty()) {
+            history.add(Nums.peek());
+        }
+        return Nums.peek();
     }
 
     public void isLegit(String function) throws SyntaxException{
@@ -163,7 +170,7 @@ public class Calculator {
         if (!check.empty()) throw new SyntaxException(-1 , 0);
     }
 
-    private String controller(String op, String x, String y) {
+    private String controller(String op, String x, String y) throws MathException{
         System.out.println("op is : " + op + ", x is " + x + " , y is " + y);
         String result = "";
         switch (op) {
@@ -177,7 +184,17 @@ public class Calculator {
                 result = multiply(x,y);
                 break;
             case "/":
+                if (y.equals("0")) {
+                    throw new MathException();
+                }
                 result = divide(x,y);
+                break;
+            case "^":
+                BigDecimal tmp = new BigDecimal(y);
+                if (tmp.compareTo(calculatorUtil.MAX_INT) >= 0 || tmp.compareTo(calculatorUtil.MIN_INT) <= 0 ) {
+                    throw new MathException();
+                }
+                result = pow(x,y);
                 break;
         }
         System.out.println(result);
@@ -200,31 +217,39 @@ public class Calculator {
         }
         return a;
     }
+
+    private String pow(String a, String b) {
+        BigDecimal x = toBigDecimal(a);
+        BigDecimal y = toBigDecimal(b);
+        BigDecimal result = BigDecimalMath.pow(x,y,calculatorUtil.mathContext);
+        return trim(result.toString());
+    }
+
     private String add(String a, String b) {
-        BigDecimal x = new BigDecimal(a);
-        BigDecimal y = new BigDecimal(b);
+        BigDecimal x = toBigDecimal(a);
+        BigDecimal y = toBigDecimal(b);
         BigDecimal result = x.add(y);
         return trim(result.toString());
     }
 
     private String subtract(String a, String b) {
-        BigDecimal x = new BigDecimal(a);
-        BigDecimal y = new BigDecimal(b);
+        BigDecimal x = toBigDecimal(a);
+        BigDecimal y = toBigDecimal(b);
         BigDecimal result = x.subtract(y);
         return trim(result.toString());
     }
 
     private String multiply(String a, String b) {
-        BigDecimal x = new BigDecimal(a);
-        BigDecimal y = new BigDecimal(b);
+        BigDecimal x = toBigDecimal(a);
+        BigDecimal y = toBigDecimal(b);
         BigDecimal result = x.multiply(y);
         return trim(result.toString());
     }
 
     private String divide(String a, String b) {
-        BigDecimal x = new BigDecimal(a);
-        BigDecimal y = new BigDecimal(b);
-        BigDecimal result = x.divide(y, MathContext.DECIMAL128);
+        BigDecimal x = toBigDecimal(a);
+        BigDecimal y = toBigDecimal(b);
+        BigDecimal result = x.divide(y, calculatorUtil.mathContext);
         return trim(result.toString());
     }
 }
