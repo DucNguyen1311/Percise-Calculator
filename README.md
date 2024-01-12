@@ -1,4 +1,4 @@
-![image](https://github.com/DucNguyen1311/Precise-Calculator/assets/125811007/0311de13-1bc1-4df4-aa05-f329da9c5f3d)Calculator app using Java, I do this simply because i saw so many memes on tiktok.
+Calculator app using Java, I do this simply because i saw so many memes on tiktok.
 Math Parser using Shunting Yard Algorithm modified to be able to solve complex parentheses, and decimal numbers with precision up to 100 digits ( i can increase this but I haven't found a solution to show all the numbers ).
 FEATURES
   + Basic Mathematic (+,-,*,/)
