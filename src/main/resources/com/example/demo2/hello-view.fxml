@@ -8,15 +8,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo2.Controller">
     <children>
-        <TextField fx:id="textField" editable="false" layoutX="32.0" layoutY="15.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="85.0" prefWidth="257.0" text="0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
+        <TextField fx:id="screen" alignment="CENTER_RIGHT" editable="false" layoutX="32.0" layoutY="15.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="85.0" prefWidth="257.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
             <font>
                 <Font size="40.0" />
             </font>
         </TextField>
-        <FlowPane layoutX="23.0" layoutY="108.0" prefHeight="300.0" prefWidth="182.0">
+        <FlowPane layoutX="20.0" layoutY="108.0" prefHeight="300.0" prefWidth="182.0">
             <children>
+            <Button layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#buttonOpeningBracketClicked" prefHeight="60.0" prefWidth="60.0" text="(">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+                <Button mnemonicParsing="false" onAction="#buttonClosingBracketClicked" prefHeight="60.0" prefWidth="60.0" text=")">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Button>
+            <Button layoutX="130.0" layoutY="190.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="adv">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
                 <Button mnemonicParsing="false" onAction="#button1Clicked" prefHeight="60.0" prefWidth="60.0" text="1">
                     <font>
                         <Font size="25.0" />
@@ -62,47 +77,52 @@
                         <Font size="25.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#clearTextField" prefHeight="60.0" prefWidth="60.0" text="C">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </Button>
+            <Button layoutX="70.0" layoutY="190.0" mnemonicParsing="false" onAction="#buttonDotClicked" prefHeight="60.0" prefWidth="60.0" text=".">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
                 <Button layoutX="70.0" layoutY="10.0" mnemonicParsing="false" onAction="#button0Clicked" prefHeight="60.0" prefWidth="60.0" text="0">
                     <font>
                         <Font size="25.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#calculate" prefHeight="60.0" prefWidth="60.0" text="=">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </Button>
+            <Button layoutX="70.0" layoutY="190.0" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="60.0" text="C">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
             </children>
         </FlowPane>
         <VBox layoutX="235.0" layoutY="108.0" prefHeight="300.0" prefWidth="60.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#addAction" prefHeight="60.0" prefWidth="60.0" text="+">
+                <Button mnemonicParsing="false" onAction="#additionButton" prefHeight="60.0" prefWidth="60.0" text="+">
                     <font>
                         <Font size="25.0" />
                     </font>
                 </Button>
-                <Button layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#minusAction" prefHeight="60.0" prefWidth="60.0" text="-">
+                <Button layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#subtractionButton" prefHeight="60.0" prefWidth="60.0" text="-">
                     <font>
                         <Font size="25.0" />
                     </font>
                 </Button>
-                <Button layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#divideAction" prefHeight="60.0" prefWidth="60.0" text="/">
+                <Button layoutX="10.0" layoutY="172.0" mnemonicParsing="false" onAction="#multiplicationButton" prefHeight="60.0" prefWidth="60.0" text="*">
                     <font>
                         <Font size="25.0" />
                     </font>
                 </Button>
-                <Button layoutX="10.0" layoutY="172.0" mnemonicParsing="false" onAction="#multiplicationAction" prefHeight="60.0" prefWidth="60.0" text="*">
+                <Button layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#divisionButton" prefHeight="60.0" prefWidth="60.0" text="/">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#buttonEqualClicked" prefHeight="60.0" prefWidth="60.0" text="=">
                     <font>
                         <Font size="25.0" />
                     </font>
                 </Button>
             </children>
         </VBox>
-        <Text fx:id="savedNumbers" layoutX="30.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+        <Text fx:id="savedNumber" layoutX="30.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
     </children>
 </AnchorPane>

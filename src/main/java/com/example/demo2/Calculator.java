@@ -58,10 +58,10 @@ public class Calculator {
                     while (!Opes.peek().equals("(")) {
                         String y = Nums.peek();
                         Nums.pop();
-                        String x = Nums.peek();
-                        Nums.pop();
                         String operand = Opes.peek();
                         Opes.pop();
+                        String x = Nums.peek();
+                        Nums.pop();
                         String result = controller(operand,x,y);
                         Nums.add(result);
                     }

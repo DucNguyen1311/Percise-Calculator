@@ -91,17 +91,31 @@ public class calculatorUtil {
                     tmp = "";
                     continue;
                 }
-                if (functionCharAt.equals("(") && Numbers.contains(functionCharPrevious)) {
-                    result.add(tmp);
-                    result.add("*");
-                    result.add(functionCharAt);
-                    storage.add(tmp);
-                    storage.add("*");
-                    storage.add(functionCharAt);
-                    tmp = "";
-                    continue;
+                if (functionCharAt.equals("(")) {
+                    if (Numbers.contains(functionCharPrevious)) {
+                        result.add(tmp);
+                        result.add("*");
+                        result.add(functionCharAt);
+                        storage.add(tmp);
+                        storage.add("*");
+                        storage.add(functionCharAt);
+                        tmp = "";
+                        continue;
+                    }
+                    if (functionCharPrevious.equals(")")) {
+                        result.add("*");
+                        result.add(functionCharAt);
+                        storage.add("*");
+                        storage.add(functionCharAt);
+                        continue;
+                    }
                 }
                 if (!Numbers.contains(functionCharPrevious)) {
+                    if (storage.peek().equals(")")) {
+                        result.add(functionCharAt);
+                        storage.add(functionCharAt);
+                        continue;
+                    }
                     if (Operators.contains(storage.peek())
                             && (functionCharAt.equals("+") || functionCharAt.equals("-"))) {
                         tmp += functionCharAt;
