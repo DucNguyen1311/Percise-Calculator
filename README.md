@@ -6,6 +6,7 @@ FEATURES
   + Identify Math Error and Syntax Error
   + Calculating with Decimal, Negative Number.
   + Calculate Power (i have coded this feature but haven't added a button to do it in the UI)
+
 UPCOMING FEATURES (That i will add if i feel like it)
   + Trigonometry
   + Logarithm
