@@ -15,4 +15,5 @@ UPCOMING FEATURES (That i will add if i feel like it)
   + LCD/LCM
   + Quadratic Equation solver
   + ... and many more that i haven't thought of.
+
 ![image](https://github.com/DucNguyen1311/Precise-Calculator/assets/125811007/d2ffc33b-d856-4fc2-b550-8d6d206102dc)
